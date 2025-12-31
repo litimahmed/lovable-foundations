@@ -1,6 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useState, useEffect } from "react";
 
 const teamMembers = [
   {
@@ -21,12 +20,6 @@ const teamMembers = [
     position: "Developer",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
   },
-  {
-    id: 4,
-    name: "J. SMITH",
-    position: "Designer",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-  },
 ];
 
 export const Team = () => {
@@ -38,58 +31,62 @@ export const Team = () => {
   });
 
   return (
-    <section id="team" className="py-28 bg-background">
+    <section id="team" className="py-16 md:py-28 bg-background">
       <div ref={ref} className="container-custom">
         {/* Decorative Line */}
-        <div className={`flex justify-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-accent" />
+        <div className={`flex justify-center mb-10 md:mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <div className="w-px h-12 md:h-16 bg-accent" />
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column - Title and Button */}
-          <div className={`lg:col-span-3 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <div className={`lg:col-span-3 text-center lg:text-left ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
             <p className="section-subheader mb-4">
               ● SENIORS
             </p>
-            <h2 className="section-main-header mb-6">
+            <h2 className="section-main-header text-[28px] md:text-[45px] mb-4 md:mb-6">
               OUR TEAM
             </h2>
-            <p className="section-paragraph mb-8">
+            <p className="section-paragraph mb-6 md:mb-8">
               Agency quisque sodales miss in the variustion vestibulum drana miss in the turpis tellus elite sorttiton the in the fermen.
             </p>
-            <button className="btn-primary uppercase flex items-center gap-2">
+            <button className="btn-primary uppercase flex items-center gap-2 mx-auto lg:mx-0">
               ALL TEAM
               <span className="text-lg">↗</span>
             </button>
           </div>
 
-          {/* Right Column - Team Members Carousel */}
+          {/* Right Column - Team Members */}
           <div className={`lg:col-span-9 overflow-hidden ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`} ref={emblaRef}>
-            <div className="flex gap-6">
+            <div className="flex gap-4 md:gap-6">
               {teamMembers.map((member) => (
-                <div key={member.id} className="flex-shrink-0 flex gap-3 items-end">
+                <div key={member.id} className="flex-shrink-0 flex gap-2 md:gap-3 items-end w-[calc(100%-40px)] sm:w-[280px] lg:w-[calc(33.333%-16px)]">
                   {/* Vertical Text */}
                   <div className="flex flex-col items-center gap-2 pb-4">
                     <span 
-                      className="text-xs tracking-[0.2em] font-display uppercase whitespace-nowrap"
+                      className="text-[10px] md:text-xs tracking-[0.2em] font-display uppercase whitespace-nowrap"
                       style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", color: '#101010' }}
                     >
                       {member.name}
                     </span>
                     <span className="text-muted-foreground">•</span>
                     <span 
-                      className="text-[10px] tracking-[0.15em] text-muted-foreground uppercase whitespace-nowrap"
+                      className="text-[8px] md:text-[10px] tracking-[0.15em] text-muted-foreground uppercase whitespace-nowrap"
                       style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                     >
                       {member.position}
                     </span>
                   </div>
                   
-                  {/* Image with masked corner */}
-                  <div className="relative group">
+                  {/* Image with proper masked corner */}
+                  <div className="relative group flex-1">
+                    {/* Image container with clipped corner */}
                     <div 
-                      className="w-52 h-72 overflow-hidden bg-secondary"
-                      style={{ borderRadius: '20px 20px 0 20px' }}
+                      className="relative w-full h-64 md:h-80 overflow-hidden bg-secondary"
+                      style={{ 
+                        clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 50px) calc(100% - 50px), calc(100% - 50px) 100%, 0 100%)',
+                        borderRadius: '20px 20px 0 20px'
+                      }}
                     >
                       <img
                         src={member.image}
@@ -97,20 +94,20 @@ export const Team = () => {
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                       />
                     </div>
-                    {/* Info Button - positioned at bottom right corner */}
+                    
+                    {/* Info Button - positioned at the clipped corner */}
                     <div 
                       className="absolute flex items-center justify-center cursor-pointer hover:bg-accent transition-colors"
                       style={{
                         bottom: 0,
                         right: 0,
-                        width: '60px',
-                        height: '60px',
+                        width: '50px',
+                        height: '50px',
                         backgroundColor: '#101010',
                         borderRadius: '50%',
-                        transform: 'translate(0, 0)'
                       }}
                     >
-                      <span className="text-light font-display text-lg">i</span>
+                      <span className="text-light font-display text-base">i</span>
                     </div>
                   </div>
                 </div>

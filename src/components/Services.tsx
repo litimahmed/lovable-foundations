@@ -1,6 +1,6 @@
 import { Globe, ShoppingCart, Settings, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 const services = [
@@ -50,68 +50,70 @@ export const Services = () => {
     setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
-  useState(() => {
+  useEffect(() => {
     if (emblaApi) {
       emblaApi.on('select', onSelect);
       onSelect();
     }
-  });
+  }, [emblaApi, onSelect]);
 
   return (
-    <section id="services" className="py-28 bg-background">
+    <section id="services" className="py-16 md:py-28 bg-background">
       <div ref={ref} className="container-custom">
         {/* Decorative Line Top */}
-        <div className={`flex justify-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-accent" />
+        <div className={`flex justify-center mb-10 md:mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <div className="w-px h-12 md:h-16 bg-accent" />
         </div>
 
         {/* Section Header */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <p className="section-subheader mb-6">
+        <div className={`text-center mb-10 md:mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <p className="section-subheader mb-4 md:mb-6">
             ● WHAT WE DO
           </p>
-          <h2 className="section-main-header">
+          <h2 className="section-main-header text-[28px] md:text-[45px]">
             OUR SERVICES
           </h2>
         </div>
 
         {/* Services Carousel */}
         <div className={`overflow-hidden ${isVisible ? "animate-fade-up" : "opacity-0"}`} ref={emblaRef}>
-          <div className="flex gap-6">
+          <div className="flex gap-4 md:gap-6">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="flex-shrink-0 w-full md:w-[calc(33.333%-16px)]"
+                className="flex-shrink-0 w-[calc(100%-40px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)]"
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
+                {/* Card with clipped corner */}
                 <div 
-                  className="relative rounded-[20px] p-8 pt-10 pb-24 h-full"
+                  className="relative p-6 md:p-8 pt-8 md:pt-10 pb-20 md:pb-24 h-full"
                   style={{ 
                     backgroundColor: '#f0f0f3',
-                    borderRadius: '20px 20px 20px 0'
+                    clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 50px) calc(100% - 50px), calc(100% - 50px) 100%, 0 100%)',
+                    borderRadius: '20px 20px 0 20px'
                   }}
                 >
-                  <h3 className="text-base font-display mb-4 tracking-wide" style={{ color: '#101010' }}>
+                  <h3 className="text-sm md:text-base font-display mb-3 md:mb-4 tracking-wide" style={{ color: '#101010' }}>
                     {service.title}
                   </h3>
-                  <p className="section-paragraph">
+                  <p className="section-paragraph text-sm md:text-[17px]">
                     {service.description}
                   </p>
-                  {/* Icon at bottom right with masked corner */}
-                  <div 
-                    className="absolute bottom-0 right-0 w-[60px] h-[60px] rounded-full flex items-center justify-center transition-colors duration-300"
-                    style={{ 
-                      backgroundColor: hoveredCard === index ? '#B6EF00' : '#101010',
-                      transform: 'translate(0, 0)'
-                    }}
-                  >
-                    {hoveredCard === index ? (
-                      <ArrowUpRight className="w-5 h-5 text-foreground" />
-                    ) : (
-                      <service.icon className="w-5 h-5 text-background" />
-                    )}
-                  </div>
+                </div>
+                
+                {/* Icon positioned at the clipped corner */}
+                <div 
+                  className="relative -mt-[50px] ml-auto w-[50px] h-[50px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
+                  style={{ 
+                    backgroundColor: hoveredCard === index ? '#B6EF00' : '#101010',
+                  }}
+                >
+                  {hoveredCard === index ? (
+                    <ArrowUpRight className="w-5 h-5 text-foreground" />
+                  ) : (
+                    <service.icon className="w-5 h-5 text-background" />
+                  )}
                 </div>
               </div>
             ))}
@@ -119,7 +121,7 @@ export const Services = () => {
         </div>
 
         {/* Modern Pagination Dots */}
-        <div className={`flex justify-center gap-3 mt-12 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
+        <div className={`flex justify-center gap-3 mt-8 md:mt-12 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
           {[0, 1].map((index) => (
             <button
               key={index}
@@ -134,8 +136,8 @@ export const Services = () => {
         </div>
 
         {/* Decorative Line Bottom */}
-        <div className={`flex justify-center mt-16 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-accent" />
+        <div className={`flex justify-center mt-10 md:mt-16 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
+          <div className="w-px h-12 md:h-16 bg-accent" />
         </div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import { Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Hero = () => {
@@ -18,18 +17,18 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div ref={ref} className="relative z-10 container-custom">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+      <div ref={ref} className="relative z-10 container-custom py-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="pt-20">
+          <div className="pt-10 lg:pt-20 text-center lg:text-left">
             <div className={`${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-              <p className="text-accent text-xs tracking-[0.3em] uppercase mb-8">
+              <p className="text-accent text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8">
                 ● DISCOVER DAGENCY
               </p>
             </div>
             
             <h1 
-              className={`text-5xl md:text-6xl lg:text-[80px] font-display text-light leading-[1.05] mb-10 ${
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-display text-light leading-[1.05] mb-8 md:mb-10 ${
                 isVisible ? "animate-fade-up delay-100" : "opacity-0"
               }`}
             >
@@ -39,7 +38,7 @@ export const Hero = () => {
             
             <div className={`${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
               <button 
-                className="border border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-10 py-4 text-xs tracking-[0.15em] uppercase transition-all duration-300 bg-transparent"
+                className="border border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-8 md:px-10 py-3 md:py-4 text-[11px] md:text-xs tracking-[0.15em] uppercase transition-all duration-300 bg-transparent"
               >
                 EXPLORE MORE
               </button>
@@ -48,11 +47,11 @@ export const Hero = () => {
 
           {/* Right Content - Rotating Play Button */}
           <div 
-            className={`flex justify-center lg:justify-end items-center min-h-[300px] ${
+            className={`flex justify-center lg:justify-end items-center min-h-[200px] md:min-h-[300px] ${
               isVisible ? "animate-fade-up delay-300" : "opacity-0"
             }`}
           >
-            <button className="group relative w-40 h-40">
+            <button className="group relative w-32 h-32 md:w-40 md:h-40">
               {/* Rotating Text Circle */}
               <div className="absolute inset-0 animate-spin-slow">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
@@ -71,8 +70,8 @@ export const Hero = () => {
               </div>
               {/* Center Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
-                  <Play className="w-8 h-8 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
+                  <Play className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
                 </div>
               </div>
             </button>
