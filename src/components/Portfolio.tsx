@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
 
@@ -32,6 +32,7 @@ const portfolioItems = [
 export const Portfolio = () => {
   const { ref, isVisible } = useScrollAnimation();
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % portfolioItems.length);
@@ -55,10 +56,10 @@ export const Portfolio = () => {
       <div ref={ref} className="container-custom">
         {/* Section Header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
+          <p className="section-subheader mb-6">
             ● PROJECTS
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground">
+          <h2 className="section-main-header">
             OUR WORKS
           </h2>
         </div>
@@ -75,6 +76,8 @@ export const Portfolio = () => {
                   ? "w-[60%] max-w-[900px] z-10" 
                   : "w-[25%] max-w-[350px] opacity-60"
               }`}
+              onMouseEnter={() => item.position === 0 && setIsHovered(true)}
+              onMouseLeave={() => item.position === 0 && setIsHovered(false)}
             >
               <div className="relative overflow-hidden rounded-lg group cursor-pointer">
                 <img
@@ -86,6 +89,24 @@ export const Portfolio = () => {
                 />
                 {item.position === 0 && (
                   <>
+                    {/* Navigation Arrows - Inside center image, visible on hover */}
+                    <button
+                      onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+                      className={`absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-all duration-300 z-20 ${
+                        isHovered ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      <ArrowLeft className="w-6 h-6 text-accent-foreground" />
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+                      className={`absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-all duration-300 z-20 ${
+                        isHovered ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      <ArrowRight className="w-6 h-6 text-accent-foreground" />
+                    </button>
+                    
                     <div className="absolute bottom-6 left-6">
                       <span className="inline-block bg-accent text-accent-foreground text-xs tracking-[0.15em] uppercase px-4 py-2 rounded-full mb-3">
                         ● {item.category}
@@ -95,8 +116,10 @@ export const Portfolio = () => {
                       </h3>
                     </div>
                     <div className="absolute bottom-6 right-6">
-                      <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center">
-                        <ArrowRight className="w-5 h-5 text-background -rotate-45" />
+                      <div className={`w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                        isHovered ? 'bg-accent' : 'bg-foreground'
+                      }`}>
+                        <ArrowUpRight className={`w-6 h-6 ${isHovered ? 'text-accent-foreground' : 'text-background'}`} />
                       </div>
                     </div>
                   </>
@@ -105,20 +128,6 @@ export const Portfolio = () => {
             </div>
           ))}
         </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-[15%] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-colors z-20"
-        >
-          <ArrowLeft className="w-5 h-5 text-accent-foreground" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-[15%] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-colors z-20"
-        >
-          <ArrowRight className="w-5 h-5 text-accent-foreground" />
-        </button>
       </div>
     </section>
   );

@@ -15,7 +15,14 @@ export default {
     extend: {
       fontFamily: {
         display: ["Federo", "serif"],
-        body: ["Inter", "sans-serif"],
+        body: ["Barlow", "sans-serif"],
+      },
+      fontSize: {
+        'section-header': ['17px', { lineHeight: '1.4', letterSpacing: '0.3em' }],
+        'main-header': ['45px', { lineHeight: '1.15' }],
+        'paragraph': ['17px', { lineHeight: '1.7' }],
+        'button': ['15px', { lineHeight: '1', letterSpacing: '0.15em' }],
+        'subtext': ['20px', { lineHeight: '1.4' }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -57,6 +64,7 @@ export default {
         },
         light: "hsl(var(--light))",
         lime: "hsl(var(--lime))",
+        "card-bg": "#f0f0f3",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -86,11 +94,16 @@ export default {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
+        "carousel-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "spin-slow": "spin-slow 12s linear infinite",
+        "carousel-scroll": "carousel-scroll 20s linear infinite",
       },
     },
   },

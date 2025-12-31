@@ -1,5 +1,7 @@
-import { Globe, ShoppingCart, Settings } from "lucide-react";
+import { Globe, ShoppingCart, Settings, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useState, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const services = [
   {
@@ -17,10 +19,43 @@ const services = [
     description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
     icon: Settings,
   },
+  {
+    title: "WEB DESIGN",
+    description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
+    icon: Globe,
+  },
+  {
+    title: "SEO OPTIMIZATION",
+    description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
+    icon: Settings,
+  },
 ];
 
 export const Services = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: 'start',
+    slidesToScroll: 1,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useState(() => {
+    if (emblaApi) {
+      emblaApi.on('select', onSelect);
+      onSelect();
+    }
+  });
 
   return (
     <section id="services" className="py-28 bg-background">
@@ -32,44 +67,70 @@ export const Services = () => {
 
         {/* Section Header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
+          <p className="section-subheader mb-6">
             ● WHAT WE DO
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground">
+          <h2 className="section-main-header">
             OUR SERVICES
           </h2>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className={`relative bg-secondary/50 rounded-3xl p-8 pt-10 pb-20 ${
-                isVisible ? "animate-fade-up" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
-              <h3 className="text-base font-display text-foreground mb-4 tracking-wide">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {service.description}
-              </p>
-              {/* Icon at bottom right */}
-              <div className="absolute bottom-6 right-6">
-                <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center">
-                  <service.icon className="w-5 h-5 text-background" />
+        {/* Services Carousel */}
+        <div className={`overflow-hidden ${isVisible ? "animate-fade-up" : "opacity-0"}`} ref={emblaRef}>
+          <div className="flex gap-6">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className="flex-shrink-0 w-full md:w-[calc(33.333%-16px)]"
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div 
+                  className="relative rounded-[20px] p-8 pt-10 pb-24 h-full"
+                  style={{ 
+                    backgroundColor: '#f0f0f3',
+                    borderRadius: '20px 20px 20px 0'
+                  }}
+                >
+                  <h3 className="text-base font-display mb-4 tracking-wide" style={{ color: '#101010' }}>
+                    {service.title}
+                  </h3>
+                  <p className="section-paragraph">
+                    {service.description}
+                  </p>
+                  {/* Icon at bottom right with masked corner */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-[60px] h-[60px] rounded-full flex items-center justify-center transition-colors duration-300"
+                    style={{ 
+                      backgroundColor: hoveredCard === index ? '#B6EF00' : '#101010',
+                      transform: 'translate(0, 0)'
+                    }}
+                  >
+                    {hoveredCard === index ? (
+                      <ArrowUpRight className="w-5 h-5 text-foreground" />
+                    ) : (
+                      <service.icon className="w-5 h-5 text-background" />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className={`flex justify-center gap-2 mt-12 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
-          <span className="w-2 h-2 rounded-full bg-border" />
-          <span className="w-2 h-2 rounded-full bg-foreground" />
+        {/* Modern Pagination Dots */}
+        <div className={`flex justify-center gap-3 mt-12 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
+          {[0, 1].map((index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index * 3)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                Math.floor(selectedIndex / 3) === index 
+                  ? 'bg-foreground scale-100' 
+                  : 'bg-border hover:bg-muted-foreground scale-75'
+              }`}
+            />
+          ))}
         </div>
 
         {/* Decorative Line Bottom */}
