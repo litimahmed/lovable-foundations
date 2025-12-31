@@ -38,32 +38,31 @@ export const Hero = () => {
             </h1>
             
             <div className={`${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
-              <Button 
-                variant="outline" 
-                className="border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-10 py-6 text-xs tracking-[0.15em] uppercase transition-all duration-300"
+              <button 
+                className="border border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-10 py-4 text-xs tracking-[0.15em] uppercase transition-all duration-300 bg-transparent"
               >
                 EXPLORE MORE
-              </Button>
+              </button>
             </div>
           </div>
 
           {/* Right Content - Rotating Play Button */}
           <div 
-            className={`flex justify-center lg:justify-end items-center ${
+            className={`flex justify-center lg:justify-end items-center min-h-[300px] ${
               isVisible ? "animate-fade-up delay-300" : "opacity-0"
             }`}
           >
-            <button className="group relative w-32 h-32">
+            <button className="group relative w-40 h-40">
               {/* Rotating Text Circle */}
               <div className="absolute inset-0 animate-spin-slow">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
                   <defs>
                     <path
                       id="circlePath"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
                     />
                   </defs>
-                  <text className="text-[8px] fill-light/70 uppercase tracking-[0.3em]">
+                  <text className="text-[7px] fill-light/70 uppercase tracking-[0.25em]">
                     <textPath href="#circlePath">
                       DAGENCY • DIGITAL MEDIA AGENCY • 
                     </textPath>
@@ -72,8 +71,8 @@ export const Hero = () => {
               </div>
               {/* Center Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
-                  <Play className="w-6 h-6 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
+                <div className="w-20 h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
+                  <Play className="w-8 h-8 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
                 </div>
               </div>
             </button>
