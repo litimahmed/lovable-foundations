@@ -2,6 +2,7 @@ import { Globe, ShoppingCart, Settings, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const services = [
   {
@@ -37,7 +38,7 @@ export const Services = () => {
     loop: true,
     align: 'start',
     slidesToScroll: 1,
-  });
+  }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -81,8 +82,7 @@ export const Services = () => {
             {services.map((service, index) => (
                 <div
                     key={service.title}
-                    className="flex-shrink-0 overflow-visible pr-[28px]
-             w-[calc(100%-40px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)]"
+                    className="flex-shrink-0 overflow-visible w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)]"
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
                 >
@@ -91,7 +91,7 @@ export const Services = () => {
                   className="relative p-6 md:p-8 pt-8 md:pt-10 pb-20 md:pb-24 h-full"
                   style={{
                     backgroundColor: '#f0f0f3',
-                    clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 0px) calc(100% - 20px), calc(100% - 50px) 100%, 0 100%)',
+                    clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 40px), 100% calc(100% - 35px), 95% calc(100% - 30px), 85% calc(100% - 20px), 70% calc(100% - 10px), 50px 100%, 0 100%)',
                     borderRadius: '20px 20px 0 20px'
                   }}
                 >

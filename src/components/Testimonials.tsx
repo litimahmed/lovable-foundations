@@ -1,5 +1,6 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useState, useEffect } from "react";
 
 const testimonials = [
@@ -35,11 +36,11 @@ const testimonials = [
 
 export const Testimonials = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
     align: 'start',
     slidesToScroll: 1,
-  });
+  }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
@@ -81,11 +82,11 @@ export const Testimonials = () => {
                 className="flex-shrink-0 w-[calc(100%-40px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)]"
               >
                 {/* Card with clipped bottom-left corner */}
-                <div 
+                <div
                   className="relative p-6 md:p-8 pt-6 md:pt-8 pb-24 md:pb-28 h-full"
-                  style={{ 
+                  style={{
                     backgroundColor: '#f0f0f3',
-                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 80px 100%, 80px calc(100% - 60px), 0 calc(100% - 60px))',
+                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 60px 100%, 60px calc(100% - 15px), 50px calc(100% - 25px), 35px calc(100% - 35px), 15px calc(100% - 45px), 0 calc(100% - 50px))',
                     borderRadius: '20px 20px 20px 0'
                   }}
                 >

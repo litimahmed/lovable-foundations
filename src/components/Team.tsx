@@ -1,5 +1,6 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const teamMembers = [
   {
@@ -24,11 +25,11 @@ const teamMembers = [
 
 export const Team = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
     align: 'start',
     slidesToScroll: 1,
-  });
+  }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
 
   return (
     <section id="team" className="py-16 md:py-28 bg-background">
@@ -81,10 +82,10 @@ export const Team = () => {
                   {/* Image with proper masked corner */}
                   <div className="relative group flex-1">
                     {/* Image container with clipped corner */}
-                    <div 
+                    <div
                       className="relative w-full h-64 md:h-80 overflow-hidden bg-secondary"
-                      style={{ 
-                        clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 50px) calc(100% - 50px), calc(100% - 50px) 100%, 0 100%)',
+                      style={{
+                        clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 35px), 100% calc(100% - 30px), 95% calc(100% - 25px), 85% calc(100% - 15px), 70% calc(100% - 8px), 40px 100%, 0 100%)',
                         borderRadius: '20px 20px 0 20px'
                       }}
                     >

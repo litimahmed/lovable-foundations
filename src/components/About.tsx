@@ -44,7 +44,7 @@ export const About = () => {
             <div
               className="relative overflow-hidden"
               style={{
-                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 200px 100%, 200px calc(100% - 70px), 0 calc(100% - 70px))',
+                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 150px 100%, 150px calc(100% - 20px), 140px calc(100% - 30px), 120px calc(100% - 40px), 80px calc(100% - 50px), 0 calc(100% - 60px))',
                 borderRadius: '20px 20px 20px 0'
               }}
             >
