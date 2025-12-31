@@ -35,9 +35,9 @@ export const Header = () => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-accent flex items-center justify-center rounded">
-            <span className="text-accent-foreground font-display text-lg font-bold">D</span>
+            <span className="text-accent-foreground font-display text-lg font-bold">A</span>
           </div>
-          <span className="text-lg font-display text-light tracking-wide">AGENCY</span>
+          <span className="text-lg font-display text-light tracking-wide">AVERIX</span>
         </a>
 
         {/* Desktop Navigation */}

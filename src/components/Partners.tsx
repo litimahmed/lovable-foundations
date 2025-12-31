@@ -1,30 +1,53 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const partners = [
-  { name: "smart", logo: "smart" },
-  { name: "WOCOMMERCE", logo: "WOCOMMERCE" },
-  { name: "awwwards", logo: "awwwards" },
-  { name: "envato", logo: "envato" },
-  { name: "monday", logo: "monday" },
+const keywords = [
+  "GRAPHIC",
+  "DESIGN",
+  "EXPERTISE",
+  "WEB",
+  "DEVELOPMENT",
+  "BRANDING",
 ];
 
 export const Partners = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section className="py-12 bg-background border-y border-border">
-      <div ref={ref} className="container-custom">
-        <div className={`flex items-center justify-between gap-8 flex-wrap ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center"
-            >
-              <span className="text-lg md:text-xl font-display text-muted-foreground/50 hover:text-foreground transition-colors duration-300 cursor-default tracking-wide">
-                {partner.logo}
-              </span>
-            </div>
-          ))}
+    <section className="py-10 md:py-16 bg-background overflow-hidden">
+      <div ref={ref} className={isVisible ? "animate-fade-up" : "opacity-0"}>
+        {/* Infinite scrolling carousel */}
+        <div className="relative w-full overflow-hidden">
+          <div 
+            className="flex animate-carousel-scroll"
+            style={{
+              width: 'max-content',
+            }}
+          >
+            {/* First set */}
+            {keywords.map((keyword, index) => (
+              <div
+                key={`first-${index}`}
+                className="flex items-center mx-4 md:mx-8"
+              >
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-display tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: '#101010' }}>
+                  {keyword}
+                </span>
+                <span className="text-accent text-xl sm:text-2xl md:text-3xl lg:text-4xl mx-4 md:mx-8">★</span>
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {keywords.map((keyword, index) => (
+              <div
+                key={`second-${index}`}
+                className="flex items-center mx-4 md:mx-8"
+              >
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-display tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: '#101010' }}>
+                  {keyword}
+                </span>
+                <span className="text-accent text-xl sm:text-2xl md:text-3xl lg:text-4xl mx-4 md:mx-8">★</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

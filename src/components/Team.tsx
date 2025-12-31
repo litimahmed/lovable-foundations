@@ -1,6 +1,5 @@
-import { Info } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import useEmblaCarousel from "embla-carousel-react";
 
 const teamMembers = [
   {
@@ -25,72 +24,95 @@ const teamMembers = [
 
 export const Team = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: 'start',
+    slidesToScroll: 1,
+  });
 
   return (
-    <section id="team" className="py-28 bg-background">
+    <section id="team" className="py-16 md:py-28 bg-background">
       <div ref={ref} className="container-custom">
         {/* Decorative Line */}
-        <div className={`flex justify-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-accent" />
+        <div className={`flex justify-center mb-10 md:mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <div className="w-px h-12 md:h-16 bg-accent" />
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column - Title and Button */}
-          <div className={`lg:col-span-3 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-            <p className="text-accent text-xs tracking-[0.3em] uppercase mb-4">
+          <div className={`lg:col-span-3 text-center lg:text-left ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+            <p className="section-subheader mb-4">
               ● SENIORS
             </p>
-            <h2 className="text-3xl md:text-4xl font-display text-foreground leading-tight mb-6">
+            <h2 className="section-main-header text-[28px] md:text-[45px] mb-4 md:mb-6">
               OUR TEAM
             </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-8">
+            <p className="section-paragraph mb-6 md:mb-8">
               Agency quisque sodales miss in the variustion vestibulum drana miss in the turpis tellus elite sorttiton the in the fermen.
             </p>
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-xs tracking-[0.15em] uppercase font-medium gap-2">
+            <button className="btn-primary uppercase flex items-center gap-2 mx-auto lg:mx-0">
               ALL TEAM
               <span className="text-lg">↗</span>
-            </Button>
+            </button>
           </div>
 
           {/* Right Column - Team Members */}
-          <div className={`lg:col-span-9 flex gap-6 justify-end ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
-            {teamMembers.map((member) => (
-              <div key={member.id} className="flex gap-3 items-end">
-                {/* Vertical Text */}
-                <div className="flex flex-col items-center gap-2 pb-4">
-                  <span 
-                    className="text-xs tracking-[0.2em] text-foreground font-display uppercase whitespace-nowrap"
-                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                  >
-                    {member.name}
-                  </span>
-                  <span className="text-muted-foreground">•</span>
-                  <span 
-                    className="text-[10px] tracking-[0.15em] text-muted-foreground uppercase whitespace-nowrap"
-                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                  >
-                    {member.position}
-                  </span>
-                </div>
-                
-                {/* Image */}
-                <div className="relative group">
-                  <div className="w-52 h-72 rounded-t-full rounded-b-lg overflow-hidden bg-secondary">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
+          <div className={`lg:col-span-9 overflow-hidden ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`} ref={emblaRef}>
+            <div className="flex gap-4 md:gap-6">
+              {teamMembers.map((member) => (
+                <div key={member.id} className="flex-shrink-0 flex gap-2 md:gap-3 items-end w-[calc(100%-40px)] sm:w-[280px] lg:w-[calc(33.333%-16px)]">
+                  {/* Vertical Text */}
+                  <div className="flex flex-col items-center gap-2 pb-4">
+                    <span 
+                      className="text-[10px] md:text-xs tracking-[0.2em] font-display uppercase whitespace-nowrap"
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", color: '#101010' }}
+                    >
+                      {member.name}
+                    </span>
+                    <span className="text-muted-foreground">•</span>
+                    <span 
+                      className="text-[8px] md:text-[10px] tracking-[0.15em] text-muted-foreground uppercase whitespace-nowrap"
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                    >
+                      {member.position}
+                    </span>
                   </div>
-                  {/* Info Button */}
-                  <div className="absolute bottom-4 right-4">
-                    <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center cursor-pointer hover:bg-accent transition-colors">
-                      <Info className="w-4 h-4 text-background" />
+                  
+                  {/* Image with proper masked corner */}
+                  <div className="relative group flex-1">
+                    {/* Image container with clipped corner */}
+                    <div 
+                      className="relative w-full h-64 md:h-80 overflow-hidden bg-secondary"
+                      style={{ 
+                        clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 50px) calc(100% - 50px), calc(100% - 50px) 100%, 0 100%)',
+                        borderRadius: '20px 20px 0 20px'
+                      }}
+                    >
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+                    
+                    {/* Info Button - positioned at the clipped corner */}
+                    <div 
+                      className="absolute flex items-center justify-center cursor-pointer hover:bg-accent transition-colors"
+                      style={{
+                        bottom: 0,
+                        right: 0,
+                        width: '50px',
+                        height: '50px',
+                        backgroundColor: '#101010',
+                        borderRadius: '50%',
+                      }}
+                    >
+                      <span className="text-light font-display text-base">i</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
