@@ -4,33 +4,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-const testimonials = [
-  {
-    id: 1,
-    quote: "Lorem posuere in miss drana eliten in the nisan drana sceriun miss etiam ornare in the miss rana duru fermen.",
-    name: "G. MARTIN",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
-  },
-  {
-    id: 2,
-    quote: "Lorem posuere in miss drana eliten in the nisan drana sceriun miss etiam ornare in the miss rana duru fermen.",
-    name: "L. BROWN",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80",
-  },
-  {
-    id: 3,
-    quote: "Lorem posuere in miss drana eliten in the nisan drana sceriun miss etiam ornare in the miss rana duru fermen.",
-    name: "L. WHITE",
-    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=200&q=80",
-  },
-  {
-    id: 4,
-    quote: "Lorem posuere in miss drana eliten in the nisan drana sceriun miss etiam ornare in the miss rana duru fermen.",
-    name: "M. JONES",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
-  },
-];
-
 export const Testimonials = () => {
   const { ref, isVisible } = useScrollAnimation();
   const { t } = useTranslation();
@@ -41,6 +14,37 @@ export const Testimonials = () => {
   }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const testimonials = [
+    {
+      id: 1,
+      quoteKey: "testimonials.quotes.quote1",
+      name: "SARAH MITCHELL",
+      company: "TechVenture Inc.",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+    },
+    {
+      id: 2,
+      quoteKey: "testimonials.quotes.quote2",
+      name: "JAMES RODRIGUEZ",
+      company: "Luxe Brands",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    },
+    {
+      id: 3,
+      quoteKey: "testimonials.quotes.quote3",
+      name: "EMMA CHEN",
+      company: "StartupFlow",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
+    },
+    {
+      id: 4,
+      quoteKey: "testimonials.quotes.quote4",
+      name: "MICHAEL FOSTER",
+      company: "Nova Digital",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+    },
+  ];
 
   const scrollTo = useCallback((index: number) => {
     if (emblaApi) emblaApi.scrollTo(index);
@@ -89,7 +93,7 @@ export const Testimonials = () => {
                     <span className="text-4xl md:text-6xl font-display text-accent leading-none">"</span>
                   </div>
                   <p className="section-paragraph text-sm md:text-[17px]">
-                    {testimonial.quote}
+                    {t(testimonial.quoteKey)}
                   </p>
                 </div>
                 
@@ -105,7 +109,7 @@ export const Testimonials = () => {
                       {testimonial.name}
                     </h4>
                     <p className="text-[10px] md:text-xs" style={{ color: '#727272' }}>
-                      {t("testimonials.position")}
+                      {t("testimonials.position")}, {testimonial.company}
                     </p>
                   </div>
                 </div>

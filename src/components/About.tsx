@@ -44,8 +44,8 @@ export const About = () => {
             {/* Image */}
             <div className="relative overflow-hidden rounded-2xl">
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-                alt="Team collaboration"
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+                alt="Creative team collaboration"
                 className="w-full h-[300px] md:h-[450px] object-cover grayscale"
               />
             </div>

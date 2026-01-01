@@ -3,8 +3,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "react-i18next";
 
 const tags = [
-  "STRATEGY", "SOCIAL", "MEDIA", "DIGITAL", "PHOTOSHOP", 
-  "ILLUSTRATOR", "GRAPHIC", "DESIGN", "CREATIVE"
+  "STRATEGY", "BRANDING", "DESIGN", "DEVELOPMENT", "MARKETING", 
+  "UX/UI", "E-COMMERCE", "IDENTITY", "DIGITAL"
 ];
 
 export const VideoBanner = () => {
@@ -16,8 +16,8 @@ export const VideoBanner = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80"
-          alt="Background"
+          src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=2000&q=80"
+          alt="Creative team brainstorming"
           className="w-full h-full object-cover opacity-50 grayscale"
         />
         <div className="absolute inset-0 bg-dark/30" />
@@ -26,7 +26,7 @@ export const VideoBanner = () => {
       {/* Background Watermark */}
       <div className="absolute bottom-20 left-0 pointer-events-none">
         <span className="text-[15vw] font-display text-light/10 whitespace-nowrap tracking-wider">
-          VIDEOS
+          SHOWREEL
         </span>
       </div>
 
