@@ -1,38 +1,40 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
-
-const portfolioItems = [
-  {
-    id: 1,
-    title: "BRANDING DESIGN",
-    category: "Design",
-    image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 2,
-    title: "CREATIVE DESIGN",
-    category: "Creative",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 3,
-    title: "WEB DEVELOPMENT",
-    category: "Development",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 4,
-    title: "DIGITAL MARKETING",
-    category: "Marketing",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export const Portfolio = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+
+  const portfolioItems = [
+    {
+      id: 1,
+      titleKey: "portfolio.items.branding",
+      categoryKey: "portfolio.categories.design",
+      image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 2,
+      titleKey: "portfolio.items.creative",
+      categoryKey: "portfolio.categories.creative",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 3,
+      titleKey: "portfolio.items.web",
+      categoryKey: "portfolio.categories.development",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 4,
+      titleKey: "portfolio.items.digital",
+      categoryKey: "portfolio.categories.marketing",
+      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+    },
+  ];
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % portfolioItems.length);
@@ -57,10 +59,10 @@ export const Portfolio = () => {
         {/* Section Header */}
         <div className={`text-center mb-10 md:mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <p className="section-subheader mb-4 md:mb-6">
-            ● PROJECTS
+            ● {t("portfolio.subtitle")}
           </p>
           <h2 className="section-main-header text-[28px] md:text-[45px]">
-            OUR WORKS
+            {t("portfolio.title")}
           </h2>
         </div>
       </div>
@@ -76,15 +78,15 @@ export const Portfolio = () => {
           >
             <img
               src={portfolioItems[currentIndex].image}
-              alt={portfolioItems[currentIndex].title}
+              alt={t(portfolioItems[currentIndex].titleKey)}
               className="w-full h-[300px] object-cover"
             />
             <div className="absolute bottom-4 left-4">
               <span className="inline-block bg-accent text-accent-foreground text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full mb-2">
-                ● {portfolioItems[currentIndex].category}
+                ● {t(portfolioItems[currentIndex].categoryKey)}
               </span>
               <h3 className="text-light text-lg font-display tracking-wide">
-                {portfolioItems[currentIndex].title}
+                {t(portfolioItems[currentIndex].titleKey)}
               </h3>
             </div>
             <div className="absolute bottom-4 right-4">
@@ -126,7 +128,7 @@ export const Portfolio = () => {
               <div className="relative overflow-hidden rounded-lg group cursor-pointer">
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={t(item.titleKey)}
                   className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
                     item.position === 0 ? "h-[350px] lg:h-[500px]" : "h-[280px] lg:h-[400px]"
                   } ${item.position !== 0 ? "grayscale" : ""}`}
@@ -153,10 +155,10 @@ export const Portfolio = () => {
                     
                     <div className="absolute bottom-4 lg:bottom-6 left-4 lg:left-6">
                       <span className="inline-block bg-accent text-accent-foreground text-[10px] lg:text-xs tracking-[0.15em] uppercase px-3 lg:px-4 py-1.5 lg:py-2 rounded-full mb-2 lg:mb-3">
-                        ● {item.category}
+                        ● {t(item.categoryKey)}
                       </span>
                       <h3 className="text-light text-lg lg:text-2xl font-display tracking-wide">
-                        {item.title}
+                        {t(item.titleKey)}
                       </h3>
                     </div>
                     <div className="absolute bottom-4 lg:bottom-6 right-4 lg:right-6">

@@ -1,5 +1,6 @@
 import { Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "react-i18next";
 
 const tags = [
   "STRATEGY", "SOCIAL", "MEDIA", "DIGITAL", "PHOTOSHOP", 
@@ -8,6 +9,7 @@ const tags = [
 
 export const VideoBanner = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
 
   return (
     <section className="relative bg-dark overflow-hidden">
@@ -43,7 +45,7 @@ export const VideoBanner = () => {
                 </defs>
                 <text className="text-[7px] fill-light uppercase tracking-[0.25em]">
                   <textPath href="#videoBannerCirclePath">
-                    CREATIVE AGENCY • CREATIVE AGENCY • 
+                    {t("videoBanner.circleText")}
                   </textPath>
                 </text>
               </svg>

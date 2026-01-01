@@ -1,8 +1,10 @@
 import { Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "react-i18next";
 
 export const Hero = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
 
   return (
     <section className="relative min-h-screen flex items-center bg-dark overflow-hidden">
@@ -23,7 +25,7 @@ export const Hero = () => {
           <div className="pt-10 lg:pt-20 text-center lg:text-left">
             <div className={`${isVisible ? "animate-fade-up" : "opacity-0"}`}>
               <p className="text-accent text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8">
-                ● DISCOVER AVERIX
+                ● {t("hero.subtitle")}
               </p>
             </div>
             
@@ -32,15 +34,15 @@ export const Hero = () => {
                 isVisible ? "animate-fade-up delay-100" : "opacity-0"
               }`}
             >
-              DIGITAL MEDIA<br />
-              AGENCY
+              {t("hero.title1")}<br />
+              {t("hero.title2")}
             </h1>
             
             <div className={`${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
               <button 
                 className="border border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-8 md:px-10 py-3 md:py-4 text-[11px] md:text-xs tracking-[0.15em] uppercase transition-all duration-300 bg-transparent"
               >
-                EXPLORE MORE
+                {t("hero.button")}
               </button>
             </div>
           </div>
@@ -63,7 +65,7 @@ export const Hero = () => {
                   </defs>
                   <text className="text-[7px] fill-light/70 uppercase tracking-[0.25em]">
                     <textPath href="#circlePath">
-                      AVERIX • DIGITAL MEDIA AGENCY •
+                      {t("hero.circleText")}
                     </textPath>
                   </text>
                 </svg>
