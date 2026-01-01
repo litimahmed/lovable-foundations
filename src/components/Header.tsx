@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
-
-const navItems = [
-  { name: "HOME", href: "#", active: true },
-  { name: "ABOUT", href: "#about" },
-  { name: "SERVICES", href: "#services" },
-  { name: "PORTFOLIO", href: "#portfolio" },
-  { name: "TEAM", href: "#team" },
-  { name: "BLOG", href: "#news" },
-  { name: "CONTACT", href: "#contact" },
-];
+import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const Header = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { name: t("nav.home"), href: "#", active: true },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.services"), href: "#services" },
+    { name: t("nav.portfolio"), href: "#portfolio" },
+    { name: t("nav.team"), href: "#team" },
+    { name: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,20 +59,21 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Cart Icon */}
+        {/* Language Switcher */}
         <div className="hidden lg:flex items-center">
-          <button className="text-light/70 hover:text-light transition-colors p-2">
-            <ShoppingCart className="w-5 h-5" />
-          </button>
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-light p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            className="text-light p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

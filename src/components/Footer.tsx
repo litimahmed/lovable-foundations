@@ -1,16 +1,19 @@
 import { ArrowRight, ArrowUp, Instagram } from "lucide-react";
 import { Input } from "@/components/ui/input";
-
-const quickLinks = [
-  { name: "Contact Us", href: "#contact" },
-  { name: "Privacy Policy", href: "#" },
-  { name: "Terms & Conditions", href: "#" },
-];
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const quickLinks = [
+    { name: t("footer.contactUs"), href: "#contact" },
+    { name: t("footer.privacyPolicy"), href: "#" },
+    { name: t("footer.terms"), href: "#" },
+  ];
 
   return (
     <footer className="bg-dark text-light pt-20 pb-8">
@@ -25,7 +28,7 @@ export const Footer = () => {
               <span className="text-lg font-display text-light tracking-wide">AGENCY</span>
             </a>
             <p className="text-light/50 text-sm leading-relaxed mb-8 max-w-xs">
-              Dagency architecture miss in the sapien sertiton miss bibenum the erat nesuen fermen.
+              {t("footer.description")}
             </p>
             <div className="flex gap-3">
               <a
@@ -53,7 +56,7 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-sm mb-8 tracking-[0.2em] uppercase">QUICK LINKS</h4>
+            <h4 className="font-display text-sm mb-8 tracking-[0.2em] uppercase">{t("footer.quickLinks")}</h4>
             <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -70,14 +73,14 @@ export const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-display text-sm mb-8 tracking-[0.2em] uppercase">SUBSCRIBE</h4>
+            <h4 className="font-display text-sm mb-8 tracking-[0.2em] uppercase">{t("footer.subscribe")}</h4>
             <p className="text-light/50 text-sm mb-6 leading-relaxed">
-              Want to be notified about our services. Just sign up and we'll send you a notification by email.
+              {t("footer.subscribeText")}
             </p>
             <div className="flex">
               <Input
                 type="email"
-                placeholder="Email Address"
+                placeholder={t("footer.emailPlaceholder")}
                 className="bg-transparent border-light/20 text-light placeholder:text-light/40 text-sm rounded-l-full rounded-r-none focus:border-accent h-12 px-6"
               />
               <button className="w-12 h-12 bg-accent rounded-r-full flex items-center justify-center hover:bg-accent/90 transition-colors">
@@ -90,7 +93,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex items-center justify-between">
           <p className="text-light/40 text-xs">
-            © Copyright 2025 Dagency | All Rights Reserved.
+            {t("footer.copyright")}
           </p>
           
           {/* Scroll to Top */}

@@ -1,16 +1,11 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const keywords = [
-  "GRAPHIC",
-  "DESIGN",
-  "EXPERTISE",
-  "WEB",
-  "DEVELOPMENT",
-  "BRANDING",
-];
+import { useTranslation } from "react-i18next";
 
 export const Partners = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
+
+  const keywords = t("partners.keywords", { returnObjects: true }) as string[];
 
   return (
     <section className="py-10 md:py-16 bg-background overflow-hidden">

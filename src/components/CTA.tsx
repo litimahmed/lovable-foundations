@@ -1,8 +1,10 @@
 import { Instagram, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "react-i18next";
 
 export const CTA = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
@@ -19,10 +21,10 @@ export const CTA = () => {
       <div ref={ref} className="container-custom relative z-10">
         <div className={`text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
-            ● LET'S TALK
+            ● {t("cta.subtitle")}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-light leading-tight mb-10">
-            HAVE A PROJECT IN MIND?
+            {t("cta.title")}
           </h2>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-light/80">
