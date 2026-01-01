@@ -15,21 +15,21 @@ export const Team = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "L. WHITE",
+      name: "ALEXANDRA STONE",
       positionKey: "team.positions.socialMedia",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
     },
     {
       id: 2,
-      name: "H. MCCURY",
+      name: "MARCUS CHEN",
       positionKey: "team.positions.supportEngineer",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
     },
     {
       id: 3,
-      name: "T. COOPER",
+      name: "OLIVIA PARKER",
       positionKey: "team.positions.developer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
     },
   ];
 

@@ -14,25 +14,25 @@ export const Portfolio = () => {
       id: 1,
       titleKey: "portfolio.items.branding",
       categoryKey: "portfolio.categories.design",
-      image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 2,
       titleKey: "portfolio.items.creative",
       categoryKey: "portfolio.categories.creative",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 3,
       titleKey: "portfolio.items.web",
       categoryKey: "portfolio.categories.development",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80",
     },
     {
       id: 4,
       titleKey: "portfolio.items.digital",
       categoryKey: "portfolio.categories.marketing",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
     },
   ];
 

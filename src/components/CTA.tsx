@@ -11,8 +11,8 @@ export const CTA = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
-          alt="Team meeting"
+          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=80"
+          alt="Team working together"
           className="w-full h-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-dark/70" />
@@ -40,13 +40,13 @@ export const CTA = () => {
 
             <span className="hidden sm:block text-light/30">|</span>
 
-            <a href="mailto:info@dagency.com" className="hover:text-accent transition-colors">
-              info@dagency.com
+            <a href="mailto:hello@averix.agency" className="hover:text-accent transition-colors">
+              hello@averix.agency
             </a>
 
             <span className="hidden sm:block text-light/30">|</span>
 
-            <span>+(1) 123 456 7890</span>
+            <span>+1 (555) 123-4567</span>
 
             <span className="hidden sm:block text-light/30">|</span>
 
